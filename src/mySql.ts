@@ -24,10 +24,10 @@ export default {
 
     database: {
 
-        host: '0.tcp.ngrok.io',
-        port: 17659,
-        user: 'root',
-        password: '',
+        host: 'vitadent.czdfi8ru46am.us-east-2.rds.amazonaws.com',
+        port: 3306,
+        user: 'VitaDent',
+        password: 'VitaDent123',
         database: 'vitadent'
     }
 
