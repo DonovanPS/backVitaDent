@@ -1,13 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = {
-    /* database:{
+    /*database:{
          
          host: 'localhost',
          user: 'root',
          password: '',
          database:'vitadent'
-     }*/
+     }
+*/
     // conexion con ngrok
     /*
     database: {

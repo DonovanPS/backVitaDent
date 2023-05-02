@@ -71,28 +71,14 @@ class IndexController {
 
   }
 
-  public login(req: Request, res: Response) {
+  public login = async(req: Request, res: Response) =>  {
 
-
-    // res.json('Validando  '+ req.params.user + ' ' + req.params.password)
-    //const {user,password} = req.body;
-
-    //console.log(req.body);
-
-   
-
-    console.log("----------------------------------------------------------------------------------");
-    
 
     const { user, password } = req.body;
 
     pool.getConnection(async (err, conn) => {
-      conn.query('SELECT * FROM Users where user = ? ', [user, password], async (err, result) => {
+      conn.query('SELECT * FROM users where user = ? ', [user, password], async (err, result) => {
 
-        console.log("----------------------------------------------------------------------------------");
-        
-        console.log(result);
-        
 
         if (!result  || result.length === 0) return res.json('Usuario o contraseña incorrectas');
 

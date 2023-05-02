@@ -18,6 +18,25 @@ const jwt = require('jsonwebtoken');
 let dataToken;
 class IndexController {
     constructor() {
+        this.login = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const { user, password } = req.body;
+            database_1.default.getConnection((err, conn) => __awaiter(this, void 0, void 0, function* () {
+                conn.query('SELECT * FROM users where user = ? ', [user, password], (err, result) => __awaiter(this, void 0, void 0, function* () {
+                    if (!result || result.length === 0)
+                        return res.json('Usuario o contraseña incorrectas');
+                    const verified = yield bcrypt_1.default.compare(password, result[0].password);
+                    if (verified && result[0].user === user) {
+                        let data = JSON.stringify(result[0]);
+                        const token = jwt.sign(data, 'stil');
+                        res.json({ token });
+                    }
+                    else {
+                        res.json('Usuario o contraseña incorrectas');
+                    }
+                    conn.release();
+                }));
+            }));
+        });
     }
     imprimir() {
     }
@@ -50,31 +69,6 @@ class IndexController {
                 });
             }));
         });
-    }
-    login(req, res) {
-        // res.json('Validando  '+ req.params.user + ' ' + req.params.password)
-        //const {user,password} = req.body;
-        //console.log(req.body);
-        console.log("----------------------------------------------------------------------------------");
-        const { user, password } = req.body;
-        database_1.default.getConnection((err, conn) => __awaiter(this, void 0, void 0, function* () {
-            conn.query('SELECT * FROM Users where user = ? ', [user, password], (err, result) => __awaiter(this, void 0, void 0, function* () {
-                console.log("----------------------------------------------------------------------------------");
-                console.log(result);
-                if (!result || result.length === 0)
-                    return res.json('Usuario o contraseña incorrectas');
-                const verified = yield bcrypt_1.default.compare(password, result[0].password);
-                if (verified && result[0].user === user) {
-                    let data = JSON.stringify(result[0]);
-                    const token = jwt.sign(data, 'stil');
-                    res.json({ token });
-                }
-                else {
-                    res.json('Usuario o contraseña incorrectas');
-                }
-                conn.release();
-            }));
-        }));
     }
     detele_User(req, res) {
         res.json('eliminando el usuario con id ' + req.params.id);

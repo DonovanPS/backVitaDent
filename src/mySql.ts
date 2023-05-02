@@ -1,12 +1,13 @@
 export default {
-    /* database:{
+    
+    /*database:{
          
          host: 'localhost',
          user: 'root',
          password: '',
          database:'vitadent'
-     }*/
-
+     }
+*/
 
 
     // conexion con ngrok
