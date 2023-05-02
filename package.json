@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc -w",
     "dev": "nodemon build/index.js",
-    "start": "ts-node src/index.ts"
+    "start": "tsc -w && nodemon build/index.js"
   },
   "keywords": [],
   "author": "",
@@ -22,8 +22,7 @@
     "mysql": "^2.18.1",
     "mysql2": "^3.2.0",
     "ngx-cookie-service": "^15.0.0",
-    "promise-mysql": "^5.2.0",
-    "ts-node": "^10.9.1"
+    "promise-mysql": "^5.2.0"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

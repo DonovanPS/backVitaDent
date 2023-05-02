@@ -25,4 +25,4 @@ FROM common-build-stage as production-build-stage
 
 ENV NODE_ENV development
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]
