@@ -79,14 +79,22 @@ class IndexController {
 
     //console.log(req.body);
 
-    console.log(req.body);
+   
 
+    console.log("----------------------------------------------------------------------------------");
+    
 
     const { user, password } = req.body;
 
     pool.getConnection(async (err, conn) => {
       conn.query('SELECT * FROM Users where user = ? ', [user, password], async (err, result) => {
-        if (result.length === 0) return res.json('Usuario o contraseña incorrectas');
+
+        console.log("----------------------------------------------------------------------------------");
+        
+        console.log(result);
+        
+
+        if (!result  || result.length === 0) return res.json('Usuario o contraseña incorrectas');
 
         const verified = await bcrypt.compare(password, result[0].password);
 
